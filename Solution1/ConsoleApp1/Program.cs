@@ -70,7 +70,7 @@ namespace ConsoleApp4
             var y = MethodB();
             
             var lst = await Task.WhenAll(x, y);
-            Task.WaitAll(x, y);
+            
             
             //MethodC(x.Result,y.Result);
 
