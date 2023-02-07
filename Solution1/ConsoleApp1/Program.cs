@@ -16,7 +16,7 @@ namespace ConsoleApp4
             {
                 Console.WriteLine(i);
                 ListA.Add(i);
-                //Thread.Sleep(2000);
+                await Task.Delay(2000);
 
 
             }
@@ -30,7 +30,7 @@ namespace ConsoleApp4
             {
                 Console.WriteLine(i);
                 ListB.Add(i);
-               //Thread.Sleep(2000);
+                await Task.Delay(2000);
 
 
             }
@@ -53,12 +53,14 @@ namespace ConsoleApp4
         {
             foreach (List<int> subList in lst)
             {
-
+                var i = Array.IndexOf(lst, subList);
+                Console.WriteLine($"List {i}");
                 foreach (int item in subList)
                 {
                     Console.WriteLine(item);
                 }
             }
+
         }
 
 
@@ -66,13 +68,13 @@ namespace ConsoleApp4
         {
             var x = MethodA();
             var y = MethodB();
-
+            
             var lst = await Task.WhenAll(x, y);
-            var result1 = x.Result;
-            var result2 = y.Result;
-            MethodC(result1, result2);
+            Task.WaitAll(x, y);
+            
+            //MethodC(x.Result,y.Result);
 
-            //Methodc(lst);
+            Methodc(lst);
 
 
 
